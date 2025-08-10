@@ -69,6 +69,33 @@ You're all set! Run the main script to start chatting with your assistant.
 
 python main.py
 
+🔌 Advanced: Swapping the AI Model
+This project is built on LangChain, which makes it incredibly flexible. While it's configured to use Google's Gemini API by default, you can easily swap it out to use other services like OpenAI or even run it completely offline with a local model via Ollama.
+
+Using OpenAI (GPT-4, etc.)
+Install the package: pip install langchain-openai
+
+Set your API Key: export OPENAI_API_KEY='YOUR_SK_KEY_HERE'
+
+Update the code: In main.py, change the LLM initialization:
+
+# from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI
+
+# llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash-latest", temperature=0.7)
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
+
+Running Offline with Ollama
+Install and run Ollama: Follow the instructions at ollama.com and pull a model (e.g., ollama run llama3).
+
+Update the code: In main.py, change the LLM initialization:
+
+# from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_community.chat_models import ChatOllama
+
+# llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash-latest", temperature=0.7)
+llm = ChatOllama(model="llama3") # No API key needed!
+
 📄 Customizing the Knowledge Base
 To use your own PDF as the knowledge source, simply:
 
